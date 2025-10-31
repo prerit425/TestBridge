@@ -128,7 +128,6 @@ GET /results/:studentId
 ## 🚀 Installation & Setup
 
 1️⃣ **Clone Repository**
-```bash
 git clone https://github.com/your-username/testbridge.git
 cd testbridge
 
