@@ -6,7 +6,6 @@ export default function AdminDashboard() {
     <div className="min-h-screen flex bg-gradient-to-br from-[#13315C] via-[#1E3A6A] to-[#244A8D] text-white font-inter">
       {/* Sidebar */}
       <aside className="w-64 fixed top-0 left-0 h-full bg-[#162B55]/90 backdrop-blur-lg border-r border-white/10 flex flex-col p-5 space-y-6 z-20">
-{/* +      <aside className="w-64 fixed top-0 left-0 h-screen bg-[#162B55]/90 backdrop-blur-lg border-r border-white/10 flex flex-col p-5 space-y-6 z-20"> */}
         <h1 className="text-xl font-semibold tracking-wide mb-8">Admin Dashboard</h1>
         <nav className="flex flex-col space-y-3">
           <button className="flex items-center space-x-3 px-4 py-2 bg-blue-600/30 rounded-lg hover:bg-blue-500/40 transition">
