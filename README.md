@@ -1,25 +1,24 @@
 # 🧠 TestBridge  
 ### A Secure, Scalable, and Automated Online Examination System  
-**Developed by:** Sachin Mishra, Prerit Maheshwari, Aastha Shukla, Sandhya, Krishna    
+**Team Members:** Sachin Mishra, Prerit Maheshwari, Aastha Shukla, Sandhya, Krishna    
 
 ---
 
 ## 📘 Overview
 
-**TestBridge** is an advanced online examination and assessment platform designed to seamlessly connect **students, educators, and institutions**.  
-It enables users to **create, manage, and evaluate exams efficiently** with a **secure, user-friendly, and automated interface**.
-
-The platform aims to **bridge the gap** between traditional paper-based exams and digital education by providing **instant evaluation, detailed analytics, and accessibility from anywhere**.
+**TestBridge** is an online examination platform created to simplify the process of conducting tests for schools, colleges, and training centers.
+Our goal was to build something that makes exams easier to manage while keeping them secure and accessible.  
+The system lets admins create exams and upload questions, while students can log in, take exams, and instantly view their results. It reduces paperwork and makes evaluations faster and more accurate.
 
 > **Tagline:**  
-> “Bridge the test gap — from pen and paper to instant results.”
+> “Bridge the test gap , from pen and paper to instant results.”
 
 ---
 
 ## 🎯 Objectives
 
 - Develop a **secure and automated** online exam platform.  
-- Provide **role-based access** for students and administrators.  
+- Provide **separate accesss** for students and administrators.  
 - Enable **timer-based exams** and **instant result generation**.  
 - Offer **performance analytics** to reduce teacher workload and help students improve.
 
@@ -71,16 +70,11 @@ The platform aims to **bridge the gap** between traditional paper-based exams an
 - One **student** → many **results**  
 - One **admin** → many **exams**
 
-### Security:
-- Passwords encrypted (e.g., bcrypt).  
-- Access controlled through user roles and tokens.
-
 ---
 
 ## 💻 Frontend
 
-**Technology Used:** React.js  
-**Tools:** HTML, CSS, JavaScript, TailwindCSS / Bootstrap  
+**Tools:** HTML, CSS, JavaScript 
 
 ### Frontend Pages:
 - **Login & Registration** – For user authentication  
@@ -112,44 +106,6 @@ POST /submitExam
 GET /results/:studentId
 
 ---
-
-## 🧮 Tech Stack
-
-| Layer | Technology |
-|--------|-------------|
-| Frontend | React.js, HTML, CSS, JavaScript |
-| Backend | Node.js (Express) / Django / Flask |
-| Database | MySQL / PostgreSQL |
-| Styling | Tailwind CSS / Bootstrap |
-| Security | JWT, bcrypt, HTTPS |
-
----
-
-## 🚀 Installation & Setup
-
-1️⃣ **Clone Repository**
-git clone https://github.com/your-username/testbridge.git
-cd testbridge
-
-2️⃣ Install Dependencies
-
-Frontend:
-cd client
-npm install
-npm start
-Backend:
-cd server
-npm install
-npm run dev
-
-3️⃣ Database Setup
-
-Create a new database in MySQL/PostgreSQL
-
-Update .env file with your DB credentials
-
-Run migrations or schema creation scripts
-
 
 🧮 System Workflow
 👨‍💼 Admin Side
@@ -192,13 +148,6 @@ Activity Logging: Records login and exam history
 
 💬 Chat Support / Notifications: For exam alerts and communication
 
-👥 Team Members
-Name	Role
-Sachin Mishra	
-Prerit Maheshwari	
-Aastha Shukla	
-Sandhya	
-Krishna	
 
 ✅ Conclusion
 TestBridge offers a secure, automated, and scalable way to conduct exams online.
