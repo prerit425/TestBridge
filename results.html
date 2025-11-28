@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Results & Performance</title>
+
+<style>
+  /* ---------- Reset & Type ---------- */
+  :root{
+    --bg1:#13315C; --bg2:#1E3A6A; --bg3:#244A8D;
+    --card-bg: rgba(255,255,255,0.06);
+    --muted: rgba(255,255,255,0.65);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter,ui-sans-serif,system-ui;
+    background: linear-gradient(180deg,var(--bg1),var(--bg2),var(--bg3));
+    color:#FFF;
+  }
+
+  /* ---------- Page Layout ---------- */
+  .page {
+    display:flex;
+    min-height:100vh;
+  }
+
+  /* ---------- SIDEBAR (EXACT COPY) ---------- */
+  .sidebar {
+    position:fixed;
+    left:0; top:0; bottom:0;
+    width:260px;
+    padding:28px;
+    background: linear-gradient(180deg,#162B55,#1B2E57,#13315C);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    backdrop-filter: blur(12px);
+    box-shadow: 2px 0 20px rgba(0,0,0,0.35);
+    display:flex;
+    flex-direction:column;
+    z-index:20;
+  }
+  .sidebar h1{
+    font-size:18px;color:#D7E8FF;font-weight:700;margin:0 0 18px 0;
+  }
+  .nav{display:flex;flex-direction:column;gap:10px;flex:1}
+  .nav a{
+    display:flex;align-items:center;gap:12px;padding:10px 12px;
+    border-radius:10px;color:rgba(255,255,255,0.9);text-decoration:none;
+    font-size:15px;transition:.2s;
+  }
+  .nav a:hover{background:rgba(59,130,246,0.12)}
+  .nav a.active{
+    background: linear-gradient(90deg, rgba(59,130,246,0.54), rgba(99,102,241,0.48));
+  }
+  .logout{padding-top:14px; border-top:1px solid rgba(255,255,255,0.06)}
+  .logout button{
+    width:100%;display:flex;align-items:center;gap:12px;
+    padding:10px;border-radius:10px;background:none;border:0;
+    color:white;cursor:pointer;transition:.2s;
+  }
+  .logout button:hover{background:rgba(59,130,246,0.1)}
+
+  /* -------- Mobile Sidebar -------- */
+  .menu-toggle{
+    position:fixed; left:16px; top:14px; z-index:30;
+    background:rgba(22,43,85,0.85); padding:8px; border:none;
+    border-radius:10px; color:white;
+    display:flex; align-items:center; justify-content:center;
+  }
+  @media(min-width:1024px){ .menu-toggle{display:none} }
+
+  /* ---------- Main content ---------- */
+  main.content{
+    padding:28px;
+    flex:1;
+    margin-left:260px;
+    background:rgba(255,255,255,0.02);
+    backdrop-filter:blur(8px);
+    min-height:100vh;
+  }
+  @media(max-width:1023px){
+    main.content{margin-left:0;padding:18px;}
+    .sidebar{transform:translateX(-120%); transition:.3s}
+    .sidebar.open{transform:translateX(0)}
+  }
+
+  /* ---------- Cards ---------- */
+  .stat-card{
+    background:rgba(255,255,255,0.06);
+    padding:22px;border-radius:16px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,0.1);
+  }
+
+  /* ---------- Table ---------- */
+  table{
+    width:100%; border-collapse:collapse;
+    font-size:14px;
+  }
+  th,td{
+    padding:14px 10px; text-align:left;
+  }
+  th{color:#CFE4FF; border-bottom:1px solid rgba(255,255,255,0.14)}
+  tr{border-bottom:1px solid rgba(255,255,255,0.06); transition:.2s}
+  tr:hover{background:rgba(255,255,255,0.05)}
+
+  .status-badge{
+    padding:6px 12px; border-radius:16px;
+    font-size:12px; font-weight:600;
+  }
+  .completed{background:#34D39933;color:#A7FFDD;border:1px solid #34D399}
+
+</style>
+</head>
+
+<body>
+
+<!-- Mobile menu toggle -->
+<button class="menu-toggle" onclick="toggleSidebar()">
+  <svg width="20" height="20" stroke="white" fill="none">
+    <path d="M4 6h16M4 12h16M4 18h16"/>
+  </svg>
+</button>
+
+<div class="page">
+
+  <!-- ========== SIDEBAR (EXACT SAME AS EXAMS) ========== -->
+  <aside id="sidebar" class="sidebar">
+    <h1>Student Dashboard</h1>
+
+    <nav class="nav">
+      <a href="home.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M3 9l9-7 9 7v10a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2z"
+                stroke="white" stroke-width="1.2"/>
+        </svg>
+        <span>Dashboard</span>
+      </a>
+
+      <a href="exams.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M3 19h18M3 5h18M3 12h18" stroke="white" stroke-width="1.2"/>
+        </svg>
+        <span>Exams / Test</span>
+      </a>
+
+      <a href="results.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M12 20V10M8 14l4-4 4 4" stroke="white" stroke-width="1.2"/>
+        </svg>
+        <span>Result & Performance</span>
+      </a>
+
+      <a href="resource.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M4 19.5v-14l8-4 8 4v14l-8 4z"
+                stroke="white" stroke-width="1.1"/>
+        </svg>
+        <span>Resources</span>
+      </a>
+
+      <a href="settings.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M12 15a3 3 0 110-6 3 3 0 010 6z" stroke="white" stroke-width="1.1"/>
+          <path d="M19.4 15a1.6 1.6 0 000-2l2-3.4-2-3.4a1.6 1.6 0 00-2-.6l-3.4-2-3.4 2a1.6 1.6 0 00-2 .6L4.6 9.6a1.6 1.6 0 000 2l-2 3.4 2 3.4a1.6 1.6 0 002 .6l3.4 2 3.4-2a1.6 1.6 0 002-.6l3.4-2z"
+                stroke="white" stroke-width="1.1"/>
+        </svg>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="logout">
+      <button onclick="logout()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"
+                stroke="white" stroke-width="1.2"/>
+          <path d="M16 17l5-5-5-5" stroke="white" stroke-width="1.2"/>
+          <path d="M21 12H9" stroke="white" stroke-width="1.2"/>
+        </svg>
+        <span>Logout</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- =============================================== -->
+
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="content">
+
+    <h1 style="
+      font-size:28px;font-weight:700;letter-spacing:0.4px;
+      margin-bottom:22px;color:#E4EEFF;
+    ">
+      📊 Results & Performance
+    </h1>
+
+    <!-- Performance Stats -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-bottom:28px;">
+      <div class="stat-card">
+        <h3 class="muted">Average Score</h3>
+        <div style="font-size:40px;font-weight:700;color:#8BC3FF;">76%</div>
+      </div>
+
+      <div class="stat-card">
+        <h3 class="muted">Completed Exams</h3>
+        <div style="font-size:40px;font-weight:700;color:#8BC3FF;">3</div>
+      </div>
+
+      <div class="stat-card">
+        <h3 class="muted">Highest Score</h3>
+        <div style="font-size:40px;font-weight:700;color:#8BC3FF;">85%</div>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div style="
+      background:rgba(255,255,255,0.05);
+      border-radius:16px;padding:22px;
+      border:1px solid rgba(255,255,255,0.1);
+      box-shadow:0 6px 20px rgba(0,0,0,0.25);
+    ">
+      <table>
+        <thead>
+          <tr>
+            <th>Exam Title</th>
+            <th>Course</th>
+            <th>Date</th>
+            <th>Score</th>
+            <th>Grade</th>
+            <th style="text-align:center;">Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Physics I Midterm</td>
+            <td style="color:#BFD9FF;">PHY 101</td>
+            <td style="color:#BFD9FF;">Nov 15, 2025</td>
+            <td style="color:#BFD9FF;">85%</td>
+            <td style="color:#BFD9FF;">A</td>
+            <td style="text-align:center;">
+              <span class="status-badge completed">Completed</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Mathematics Final</td>
+            <td style="color:#BFD9FF;">MTH 102</td>
+            <td style="color:#BFD9FF;">Oct 20, 2025</td>
+            <td style="color:#BFD9FF;">78%</td>
+            <td style="color:#BFD9FF;">B+</td>
+            <td style="text-align:center;">
+              <span class="status-badge completed">Completed</span>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Chemistry II Test</td>
+            <td style="color:#BFD9FF;">CHE 202</td>
+            <td style="color:#BFD9FF;">Nov 5, 2025</td>
+            <td style="color:#BFD9FF;">64%</td>
+            <td style="color:#BFD9FF;">C+</td>
+            <td style="text-align:center;">
+              <span class="status-badge completed">Completed</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+</div>
+
+<!-- JS -->
+<script>
+function toggleSidebar(){
+  document.getElementById("sidebar").classList.toggle("open");
+}
+
+function logout(){
+  window.location.href = "index.html";
+}
+
+document.addEventListener("DOMContentLoaded", ()=>{
+  const links = document.querySelectorAll(".nav a");
+  const current = window.location.pathname.split("/").pop();
+  links.forEach(a=>{
+    if(a.getAttribute("href") === current){
+      a.classList.add("active");
+    }
+  });
+});
+</script>
+
+</body>
+</html>

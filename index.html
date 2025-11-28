@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Elegant Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ===== GLOBAL RESET ===== */
+*{
+  margin:0; padding:0;
+  box-sizing:border-box;
+  font-family:Poppins, sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background: radial-gradient(circle at top left,#1b2f54,#102544,#0c1d35,#081527);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  overflow:hidden;
+  color:white;
+}
+
+/* ===== BACKGROUND BLOBS ===== */
+.blob{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(100px);
+  opacity:0.5;
+  animation: floaty 10s infinite ease-in-out;
+}
+
+.blob-1{
+  width:300px; height:300px;
+  background:#4c9cff33;
+  top:-40px; left:-40px;
+}
+.blob-2{
+  width:350px; height:350px;
+  background:#6f79ff33;
+  bottom:-60px; right:-50px;
+  animation-duration:14s;
+}
+@keyframes floaty{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.18);}
+  100%{transform:scale(1);}
+}
+
+/* ===== MAIN CARD ===== */
+.card{
+  width:100%;
+  max-width:1150px;
+  min-height:540px;
+  border-radius:32px;
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(22px);
+  border:1px solid rgba(255,255,255,0.15);
+  box-shadow:0 0 45px rgba(0,0,0,0.3);
+  display:flex;
+  overflow:hidden;
+  animation: popin .7s ease;
+}
+@keyframes popin{
+  from{opacity:0; transform:scale(.93);}
+  to{opacity:1; transform:scale(1);}
+}
+
+/* ===== LEFT PANEL ===== */
+.left{
+  width:100%;
+  padding:45px 35px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.left h2{
+  font-size:32px;
+  margin-bottom:10px;
+  font-weight:600;
+}
+.left p{
+  font-size:14px;
+  color:#d7e4ff;
+  margin-bottom:30px;
+}
+#signupBox .input, 
+#signupBox .btn {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+}
+
+.input{
+  width:100%;
+  max-width:320px;
+  padding:14px;
+  margin-bottom:15px;
+  border-radius:12px;
+  border:none;
+  outline:none;
+  background:rgba(255,255,255,0.18);
+  backdrop-filter:blur(6px);
+  color:white;
+  font-size:15px;
+  transition:0.2s;
+}
+.input::placeholder{
+  color:rgba(255,255,255,0.55);
+}
+.input:focus{
+  background:rgba(255,255,255,0.25);
+}
+
+/* Button */
+.btn{
+  width:100%;
+  max-width:320px;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  margin-top:5px;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  background:linear-gradient(135deg,#4c88ff,#6f4dff);
+  color:white;
+  box-shadow:0 4px 20px rgba(0,0,0,0.25);
+  transition:0.25s;
+}
+.btn:hover{
+  opacity:.9;
+  transform:translateY(-2px);
+}
+
+/* Toggle Links */
+.toggle{
+  margin-top:18px;
+  font-size:14px;
+  color:#dbe6ff;
+}
+.toggle span{
+  color:#7cb6ff;
+  text-decoration:underline;
+  cursor:pointer;
+}
+
+/* Error */
+.error{
+  margin-top:8px;
+  font-size:14px;
+  color:#ffbdbd;
+  display:none;
+}
+
+/* ===== RIGHT PANEL ===== */
+.right{
+  width:50%;
+  display:none;
+}
+
+@media(min-width:680px){
+  .right{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+  }
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(130deg,rgba(255,255,255,0.45),rgba(200,220,255,0.2),rgba(70,80,140,0.2));
+  border-left:1px solid rgba(255,255,255,0.2);
+  backdrop-filter:blur(20px);
+  opacity:0;
+  animation:fadein 1.4s forwards;
+}
+@keyframes fadein{
+  to{opacity:1;}
+}
+
+.right-content{
+  z-index:5;
+  text-align:center;
+  padding:20px;
+  max-width:290px;
+}
+.right-content h2{
+  font-size:26px;
+  margin-bottom:14px;
+  font-weight:650;
+}
+.right-content p{
+  font-size:14px;
+  margin-bottom:22px;
+  line-height:1.5;
+}
+
+.right-btn{
+  padding:12px 30px;
+  border-radius:25px;
+  background:white;
+  color:#1b2f54;
+  font-weight:600;
+  font-size:15px;
+  border:none;
+  cursor:pointer;
+  transition:0.25s;
+}
+.right-btn:hover{
+  background:#e6e6e6;
+}
+
+/* Hide elements switch */
+.hidden{ display:none; }
+</style>
+
+</head>
+<body>
+
+<!-- Background Blobs -->
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+
+<!-- Main Card -->
+<div class="card">
+
+  <!-- LEFT -->
+  <div class="left">
+
+    <!-- LOGIN -->
+    <div id="loginBox">
+      <h2>Welcome Back</h2>
+      <p>Login to access your exam dashboard</p>
+
+      <input id="email" type="text" placeholder="Email" class="input">
+      <input id="password" type="password" placeholder="Password" class="input">
+
+      <button class="btn" onclick="handleLogin()">Sign In</button>
+      <div id="errorMsg" class="error">Invalid credentials. Try again.</div>
+
+      <div class="toggle">
+        New here?
+        <span onclick="toggleSignup(true)">Create account</span>
+      </div>
+    </div>
+
+    <!-- SIGNUP -->
+    <div id="signupBox" class="hidden">
+      <h2>Create Your Account</h2>
+      <p>Register to begin your examination journey</p>
+
+      <input type="text" placeholder="Full name" class="input">
+      <input type="text" placeholder="Email" class="input">
+      <input type="password" placeholder="Password" class="input">
+
+      <button class="btn" onclick="signup()">Sign Up</button>
+
+      <div class="toggle">
+        Already have an account?
+        <span onclick="toggleSignup(false)">Sign In</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right">
+    <div class="overlay"></div>
+
+    <div class="right-content" id="rightContent">
+      <h2 id="rightTitle">New Candidate?</h2>
+      <p id="rightDesc">Sign up to create your exam account and start learning.</p>
+      <button id="rightBtn" class="right-btn" onclick="toggleSignup(true)">Sign Up</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let signupMode = false;
+
+/* ===== TOGGLE LOGIN/SIGNUP ===== */
+function toggleSignup(toSignup){
+  signupMode = toSignup;
+
+  document.getElementById("loginBox").classList.toggle("hidden", toSignup);
+  document.getElementById("signupBox").classList.toggle("hidden", !toSignup);
+
+  let t = document.getElementById("rightTitle");
+  let d = document.getElementById("rightDesc");
+  let b = document.getElementById("rightBtn");
+
+  if(toSignup){
+    t.innerText = "Already Registered?";
+    t.style.color = "#21345A";
+
+    d.innerText = "Login with your credentials to continue.";
+    d.style.color = "#333";
+
+    b.innerText = "Sign In";
+    b.style.background = "white";
+    b.style.color = "#1c2d50";
+    b.onclick = () => toggleSignup(false);
+  } else {
+    t.innerText = "New Candidate?";
+    t.style.color = "white";
+
+    d.innerText = "Sign up to create your exam account and start learning.";
+    d.style.color = "#d7e4ff";
+
+    b.innerText = "Sign Up";
+    b.style.background = "white";
+    b.style.color = "#1c2d50";
+    b.onclick = () => toggleSignup(true);
+  }
+}
+
+/* ===== LOGIN HANDLER ===== */
+function handleLogin(){
+  let email = document.getElementById("email").value.trim();
+  let pass = document.getElementById("password").value.trim();
+  let err = document.getElementById("errorMsg");
+
+  if((email === "student@gmail.com" && pass === "12345")
+      || (email === "admin@gmail.com" && pass === "12345")){
+    window.location.href = "home.html";   // >>> Redirect to HOME
+  } else {
+    err.style.display = "block";
+  }
+}
+
+/* ===== SIGNUP HANDLER ===== */
+function signup(){
+  // Signup successful → Redirect to home
+  window.location.href = "home.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Student Settings</title>
+
+<style>
+  :root{
+    --bg1:#13315C; --bg2:#1E3A6A; --bg3:#244A8D;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter, ui-sans-serif, system-ui;
+    background:linear-gradient(180deg,var(--bg1),var(--bg2),var(--bg3));
+    color:white;
+  }
+  .page{display:flex;min-height:100vh}
+
+  /* ------------ SIDEBAR EXACTLY SAME ------------ */
+  .sidebar{
+    position:fixed;left:0;top:0;bottom:0;width:260px;
+    padding:28px;background:linear-gradient(180deg,#162B55,#1B2E57,#13315C);
+    border-right:1px solid rgba(255,255,255,0.06);
+    box-shadow:2px 0 20px rgba(0,0,0,0.35);
+    backdrop-filter:blur(12px);
+    display:flex;flex-direction:column;
+    z-index:20;
+  }
+  .sidebar h1{
+    font-size:18px;font-weight:700;margin:0 0 18px 0;color:#D7E8FF;
+  }
+  .nav{display:flex;flex-direction:column;gap:10px;flex:1}
+  .nav a{
+    display:flex;align-items:center;gap:12px;
+    padding:10px 12px;border-radius:10px;
+    color:rgba(255,255,255,0.9);text-decoration:none;font-size:15px;
+    transition:.2s;
+  }
+  .nav a:hover{background:rgba(59,130,246,0.12)}
+  .nav a.active{
+    background:linear-gradient(90deg,rgba(59,130,246,0.54),rgba(99,102,241,0.48));
+    color:white;
+  }
+  .logout{padding-top:14px;border-top:1px solid rgba(255,255,255,0.06)}
+  .logout button{
+    width:100%;padding:10px;border:none;background:none;
+    color:white;border-radius:10px;
+    display:flex;align-items:center;gap:12px;cursor:pointer;
+  }
+  .logout button:hover{background:rgba(59,130,246,0.12)}
+
+  /* Mobile Toggle */
+  .menu-toggle{
+    position:fixed;left:16px;top:14px;z-index:30;
+    padding:8px;border:none;background:rgba(22,43,85,0.85);
+    color:white;border-radius:10px;display:flex;
+  }
+  @media(min-width:1024px){ .menu-toggle{display:none} }
+
+  /* ------------ MAIN CONTENT ------------ */
+  main.content{
+    margin-left:260px;padding:28px;flex:1;
+    background:rgba(255,255,255,0.02);min-height:100vh;
+    backdrop-filter:blur(8px);
+  }
+
+  @media(max-width:1023px){
+    main.content{margin-left:0;padding:18px;}
+    .sidebar{transform:translateX(-120%);transition:.3s}
+    .sidebar.open{transform:translateX(0)}
+  }
+
+  /* Cards */
+  .card{
+    background:rgba(255,255,255,0.1);
+    padding:22px;border-radius:16px;
+    border:1px solid rgba(255,255,255,0.1);
+    margin-bottom:28px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.25);
+  }
+  .card h3{
+    margin:0 0 14px 0;
+    color:#E4EEFF;
+    font-size:18px;
+  }
+
+  .input{
+    width:100%;padding:12px 14px;margin-top:6px;
+    background:rgba(255,255,255,0.1);border:1px solid transparent;
+    border-radius:10px;color:white;outline:none;
+  }
+  .input.editable{
+    border:1px solid rgba(120,170,255,0.4);
+  }
+
+  .edit-btn, .save-btn{
+    padding:8px 14px;border:none;border-radius:8px;
+    display:flex;align-items:center;gap:6px;
+    cursor:pointer;font-size:14px;
+  }
+  .edit-btn{background:rgba(59,130,246,0.4)}
+  .edit-btn:hover{background:rgba(59,130,246,0.55)}
+  .save-btn{background:rgba(16,185,129,0.45)}
+  .save-btn:hover{background:rgba(16,185,129,0.6)}
+
+  .pref-row{
+    display:flex;align-items:center;
+    justify-content:space-between;
+    padding:10px 0;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Mobile toggle -->
+<button class="menu-toggle" onclick="toggleSidebar()">
+  <svg width="22" height="22" stroke="white"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+</button>
+
+<div class="page">
+
+  <!-- Sidebar -->
+  <aside id="sidebar" class="sidebar">
+    <h1>Student Dashboard</h1>
+
+    <nav class="nav">
+      <a href="home.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M3 9l9-7 9 7v10a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2z"
+                stroke="white" stroke-width="1.2"/>
+        </svg>
+        <span>Dashboard</span>
+      </a>
+
+      <a href="exams.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M3 19h18M3 5h18M3 12h18" stroke="white" stroke-width="1.2"/>
+        </svg>
+        <span>Exams / Test</span>
+      </a>
+
+      <a href="results.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M12 20V10M8 14l4-4 4 4" stroke="white" stroke-width="1.2"/>
+        </svg>
+        <span>Result & Performance</span>
+      </a>
+
+      <a href="resource.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M4 19.5v-14l8-4 8 4v14l-8 4z"
+                stroke="white" stroke-width="1.1"/>
+        </svg>
+        <span>Resources</span>
+      </a>
+
+      <a href="settings.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M12 15a3 3 0 110-6 3 3 0 010 6z" stroke="white" stroke-width="1.1"/>
+          <path d="M19.4 15a1.6 1.6 0 000-2l2-3.4-2-3.4a1.6 1.6 0 00-2-.6l-3.4-2-3.4 2a1.6 1.6 0 00-2 .6L4.6 9.6a1.6 1.6 0 000 2l-2 3.4 2 3.4a1.6 1.6 0 002 .6l3.4 2 3.4-2a1.6 1.6 0 002-.6l3.4-2z"
+                stroke="white" stroke-width="1.1"/>
+        </svg>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="logout">
+      <button onclick="logout()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"
+                stroke="white" stroke-width="1.2"/>
+          <path d="M16 17l5-5-5-5" stroke="white" stroke-width="1.2"/>
+          <path d="M21 12H9" stroke="white" stroke-width="1.2"/>
+        </svg>
+        <span>Logout</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+    <h1 style="font-size:28px;font-weight:700;margin-bottom:20px;">Account Settings</h1>
+
+    <!-- Profile Information -->
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <h3>Profile Information</h3>
+        <button id="editBtn" class="edit-btn">
+          ✏️ Edit
+        </button>
+      </div>
+
+      <div class="grid" style="display:grid;gap:16px;grid-template-columns:1fr 1fr;">
+
+        <div>
+          <label>Full Name</label>
+          <input id="name" class="input" value="Prerit Maheshwari" disabled />
+        </div>
+
+        <div>
+          <label>Student ID</label>
+          <input class="input" value="GLA2315001933" disabled />
+        </div>
+
+        <div>
+          <label>Email</label>
+          <input id="email" class="input" value="student@gmail.com" disabled />
+        </div>
+
+        <div>
+          <label>Password</label>
+          <input id="password" class="input" type="password" value="********" disabled />
+        </div>
+
+      </div>
+
+      <button id="saveBtn" class="save-btn" style="margin-top:14px;display:none;">
+        💾 Save
+      </button>
+    </div>
+
+    <!-- Preferences -->
+    <div class="card">
+      <h3>Preferences</h3>
+
+      <div class="pref-row">
+        <span>Enable Email Notifications</span>
+        <input type="checkbox" checked />
+      </div>
+
+      <div class="pref-row">
+        <span>Enable Exam Reminders</span>
+        <input type="checkbox" checked />
+      </div>
+
+      <div class="pref-row">
+        <span>Dark Theme</span>
+        <input type="checkbox" />
+      </div>
+
+    </div>
+
+  </main>
+</div>
+
+<script>
+function toggleSidebar(){
+  document.getElementById("sidebar").classList.toggle("open");
+}
+function logout(){
+  window.location.href="index.html";
+}
+
+// -------- Edit / Save Toggle Logic --------
+let editing = false;
+
+const editBtn = document.getElementById("editBtn");
+const saveBtn = document.getElementById("saveBtn");
+const fields = ["name","email","password"].map(id => document.getElementById(id));
+
+editBtn.onclick = () => {
+  editing = true;
+  fields.forEach(f => { f.disabled = false; f.classList.add("editable"); });
+  editBtn.style.display="none";
+  saveBtn.style.display="inline-flex";
+};
+
+saveBtn.onclick = () => {
+  editing = false;
+  fields.forEach(f => { f.disabled = true; f.classList.remove("editable"); });
+  saveBtn.style.display="none";
+  editBtn.style.display="inline-flex";
+  alert("Profile updated successfully!");
+};
+
+// Active link highlight
+document.addEventListener("DOMContentLoaded", () => {
+  const links = document.querySelectorAll(".nav a");
+  const cur = window.location.pathname.split("/").pop();
+  links.forEach(a => {
+    if (a.getAttribute("href") === cur) a.classList.add("active");
+  });
+});
+</script>
+
+</body>
+</html>
