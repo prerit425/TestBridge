@@ -1,10 +1,10 @@
-# 🧠 TestBridge  
+# TestBridge  
 ### A Secure, Scalable, and Automated Online Examination System  
 **Team Members:** Sachin Mishra, Prerit Maheshwari, Aastha Shukla, Sandhya, Krishna    
 
 ---
 
-## 📘 Overview
+## Overview
 
 **TestBridge** is an online examination platform created to simplify the process of conducting tests for schools, colleges, and training centers.
 Our goal was to build something that makes exams easier to manage while keeping them secure and accessible.  
@@ -15,7 +15,7 @@ The system lets admins create exams and upload questions, while students can log
 
 ---
 
-## 🎯 Objectives
+## Objectives
 
 - Develop a **secure and automated** online exam platform.  
 - Provide **separate accesss** for students and administrators.  
@@ -24,23 +24,22 @@ The system lets admins create exams and upload questions, while students can log
 
 ---
 
-## ⚙️ Key Features
+## Key Features
 
-- 🔐 **Secure Authentication:** Role-based login for students and admins.  
-- ⚡ **Instant Result Generation:** Auto-grading for objective-type questions.  
-- 🧾 **Question Bank Management:** Add, edit, or delete questions easily.  
-- 📊 **Performance Analytics Dashboard:** Real-time data on student performance.  
-- 📱 **Responsive Design:** Works smoothly on mobile, tablet, and PC.  
-- 🕵️ **Anti-Cheating System:** Detects tab switching and suspicious activity.  
-- 🌍 **Scalable Architecture:** Handles thousands of concurrent users efficiently.  
+-  **Secure Authentication:** Role-based login for students and admins.  
+-  **Instant Result Generation:** Auto-grading for objective-type questions.  
+- **Question Bank Management:** Add, edit, or delete questions easily.  
+-  **Performance Analytics Dashboard:** Real-time data on student performance.  
+-  **Responsive Design:** Works smoothly on mobile, tablet, and PC.  
+-  **Anti-Cheating System:** Detects tab switching and suspicious activity.  
+-  **Scalable Architecture:** Handles thousands of concurrent users efficiently.  
 
 ---
 
-## 🧩 System Architecture
+## System Architecture
 
 - **Frontend:** User interface for students and admins.  
-- **Backend:** Handles exam logic, authentication, and result processing.  
-- **Database:** Stores all records securely — users, exams, questions, and results.
+
 
 ---
 
@@ -98,16 +97,10 @@ The system lets admins create exams and upload questions, while students can log
 - Calculates scores automatically  
 - Generates detailed analytics
   
-### Example API Endpoints:
-POST /login
-POST /register
-GET /exams
-POST /submitExam
-GET /results/:studentId
 
 ---
 
-🧮 System Workflow
+ System Workflow
 👨‍💼 Admin Side
 Logs in securely
 
@@ -126,17 +119,6 @@ Attempts questions within the time limit
 
 Submits exam → sees instant results
 
-🔐 Security Features
-JWT Authentication: Secure session management
-
-Password Encryption: Protects user credentials
-
-Role-based Access: Prevents unauthorized actions
-
-Data Validation: Blocks invalid inputs
-
-Activity Logging: Records login and exam history
-
 📊 Future Enhancements
 🤖 AI-Based Proctoring: Real-time webcam monitoring
 
@@ -144,9 +126,6 @@ Activity Logging: Records login and exam history
 
 📱 Mobile App Integration: Android/iOS compatibility
 
-📈 Advanced Analytics: Personalized student insights
-
-💬 Chat Support / Notifications: For exam alerts and communication
 
 
 ✅ Conclusion
